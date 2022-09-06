@@ -61,3 +61,16 @@
 						- En el Views/web.config sección namespaces agregar
 							- <add namespace="System.Web.Optimization"></add>
 						- Cerrar aplicación y volverla a cargar desde 0
+						
+			- Agregar tema de bootstrap Lummen
+				- Ir a https://startbootstrap.com/themes
+				- Copiar el bootstrap que se indica
+					- lumen-bootstrap.css
+					- Ir a carpeta Content botón derecho add existing item y cargarlo.
+				- Cambiar en la aplicación.
+					- Agregar al body del Site.css
+						- font-family: Calibri;
+					- En _Layout cambiar al navbar-default
+					- En BundleConfig.cs al StyleBundle q corresponde llamar al lumen-bootstrap en lugar de bootstrap.
+					- 
+						
