@@ -85,3 +85,9 @@
 				- Colocar en clase HomeController el atributo [Authorize]
 					- Esto no me permite ingresar y desplegará mensajde de IIS con error 401
 				- Testear que se presenta mensaje de no autorizado.
+				
+			- Hacer autenticación usando cookies
+				- Agregar paquete Microsoft.Owin.Security.Cookies
+					- Install-Package Microsoft.Owin.Security.Cookies -Version 3.0.1
+						- Agrega automáticamente  Microsoft.Owin.Security
+						
