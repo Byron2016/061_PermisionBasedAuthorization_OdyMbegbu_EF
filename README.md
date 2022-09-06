@@ -96,3 +96,14 @@
 					- Crear método y vista Login
 						- Ir a la página de bootstrap/Components/css/forms y compiar el ejemplo Horizontal form.
 						
+				- Indicar a owin a donde reedireccionar en caso de no estar autorizado.
+					- En owin startup class crear un método que llame pagina de login.
+						```cs
+							private static void ConfigureAuth(IAppBuilder app)
+							{
+								app.UseCookieAuthentication(new CookieAuthenticationOptions
+								{
+									LoginPath = new PathString("/account/login"),
+								});
+							}
+						```
