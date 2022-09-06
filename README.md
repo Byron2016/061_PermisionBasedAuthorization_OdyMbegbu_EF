@@ -86,8 +86,13 @@
 					- Esto no me permite ingresar y desplegará mensajde de IIS con error 401
 				- Testear que se presenta mensaje de no autorizado.
 				
-			- Hacer autenticación usando cookies
-				- Agregar paquete Microsoft.Owin.Security.Cookies
-					- Install-Package Microsoft.Owin.Security.Cookies -Version 3.0.1
-						- Agrega automáticamente  Microsoft.Owin.Security
+			- Redireccionar a Login view cuando no se este autorizado
+				- Usar autenticación usando cookies
+					- Agregar paquete Microsoft.Owin.Security.Cookies
+						- Install-Package Microsoft.Owin.Security.Cookies -Version 3.0.1
+							- Agrega automáticamente  Microsoft.Owin.Security
+						
+				- Agregar AccountController 
+					- Crear método y vista Login
+						- Ir a la página de bootstrap/Components/css/forms y compiar el ejemplo Horizontal form.
 						
