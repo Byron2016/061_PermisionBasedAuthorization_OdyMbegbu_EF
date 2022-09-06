@@ -116,3 +116,5 @@
 			
 		- Signning V5
 			- Agregar clase Models/UserModel
+			- Agregar paquete Microsoft.AspNet.Identity.Core V5 9.58
+				- Install-Package Microsoft.AspNet.Identity.Core -Version 2.2.3
