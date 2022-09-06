@@ -72,5 +72,9 @@
 						- font-family: Calibri;
 					- En _Layout cambiar al navbar-default
 					- En BundleConfig.cs al StyleBundle q corresponde llamar al lumen-bootstrap en lugar de bootstrap.
-					- 
-						
+
+		- Configurar OWIN middleware
+			- https://docs.microsoft.com/en-us/aspnet/aspnet/overview/owin-and-katana/owin-middleware-in-the-iis-integrated-pipeline
+			
+			- Instalar paquete de owin V2 5.40
+				- Install-Package Microsoft.Owin.Host.SystemWeb.es -Version 4.2.0
