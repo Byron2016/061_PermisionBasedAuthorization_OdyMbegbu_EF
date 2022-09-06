@@ -107,3 +107,9 @@
 								});
 							}
 						```
+						
+		- Autentificación V4
+			- Agregar clase Models/LoginModel que recibirá en post lo que se envíe de la vista de login.
+			- Agregar en AccountController el Post para el método Login 
+				- Recibe de parámetro un LoginModel
+			- Redireccionar en la vista login para llamar a método Login post y utilizar htlm helpers para definir los inputs

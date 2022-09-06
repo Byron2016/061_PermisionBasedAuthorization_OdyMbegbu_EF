@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Addressbook.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,12 @@ namespace Addressbook.Web.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel model)
+        {
+            return View(model);
         }
     }
 }
