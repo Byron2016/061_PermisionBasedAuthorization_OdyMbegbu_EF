@@ -41,4 +41,11 @@
 					- Esto agregará paquetes
 						- WebGrease
 						- Newtonsoft.Json
-						- Antlr					
+						- Antlr
+
+			- Agregar a Addressbook.Web controllador Home y la vista index
+				- Esto como es un proyecto vacío agregará los siguientes componentes:
+					- Addressbook.Web/Content/Site.css
+					- Addressbook.Web/Views/Shared/_Layout.cshtml
+					- Addressbook.Web/Views/_ViewStart.cshtml
+					- Además el controlador y la vista antes indicados.						
