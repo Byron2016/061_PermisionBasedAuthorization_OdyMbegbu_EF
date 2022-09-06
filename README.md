@@ -15,3 +15,30 @@
 				- Empty
 				- MVC
 				- Also create a project for unit test con nombre Addressbook.Test
+
+		- Configurar UI
+			- Agregar bootstrap
+				- Install-Package bootstrap -Version 3.4.1
+					- Esto agregará bootstrap, agregará jQuery
+					- Modifica archivo packages.config
+					- Crea carpeta fonts
+					- Modifica archivo xxx.web.csproj
+					
+			- Agregar jquery
+				- Install-Package jQuery -Version 3.4.1
+					
+			- Agregar jQuery.Validation
+				- Install-Package jQuery.Validation -Version 1.17.0
+				
+			- Agregar Microsoft.jQuery.Unobtrusive.Validation
+				- Install-Package Microsoft.jQuery.Unobtrusive.Validation -Version 3.2.11
+				
+			- Agregar Modernizr
+				- Install-Package Modernizr -Version 2.8.3
+				
+			- Agregar Microsoft.AspNet.Web.Optimization
+				- Install-Package Microsoft.AspNet.Web.Optimization -Version 1.1.3
+					- Esto agregará paquetes
+						- WebGrease
+						- Newtonsoft.Json
+						- Antlr					
