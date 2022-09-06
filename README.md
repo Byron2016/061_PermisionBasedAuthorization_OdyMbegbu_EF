@@ -78,3 +78,10 @@
 			
 			- Instalar paquete de owin V2 5.40
 				- Install-Package Microsoft.Owin.Host.SystemWeb.es -Version 4.2.0
+				
+			- Implementar primer acercamiento a authorizacion
+				- Agregar a la raíz del proyecto Addressbook.Web la clase "OWIN StartUP Class" con el nombre Startup.cs
+				
+				- Colocar en clase HomeController el atributo [Authorize]
+					- Esto no me permite ingresar y desplegará mensajde de IIS con error 401
+				- Testear que se presenta mensaje de no autorizado.
