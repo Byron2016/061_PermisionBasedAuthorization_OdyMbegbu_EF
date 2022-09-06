@@ -113,3 +113,6 @@
 			- Agregar en AccountController el Post para el método Login 
 				- Recibe de parámetro un LoginModel
 			- Redireccionar en la vista login para llamar a método Login post y utilizar htlm helpers para definir los inputs
+			
+		- Signning V5
+			- Agregar clase Models/UserModel
