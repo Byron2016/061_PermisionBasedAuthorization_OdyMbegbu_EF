@@ -463,3 +463,12 @@
 						- Para enviar migración ejecutar
 							- update-database -verbose
 								
+			- Adding DI V12
+				- Instalar paquetes
+					- Instalar en Addressbook.web paquete Ninject.Web.Common V12 7.00
+						- Install-Package Ninject.Web.Common -Version 3.3.2
+
+					- Instalar en Addressbook.web paquete Ninject
+						- Install-Package Ninject -Version 3.3.6
+					
+					
