@@ -18,7 +18,7 @@ namespace Addressbook.Web.Controllers
             string email = User.Identity.GetUserName();
 
 
-            var user = new UserModel
+            var user = new User
             {
                 UserID = userID,
                 Email = email

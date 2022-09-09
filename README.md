@@ -115,7 +115,7 @@
 			- Redireccionar en la vista login para llamar a método Login post y utilizar htlm helpers para definir los inputs
 			
 		- Signning V5 - V8 3.40
-			- Agregar clase Models/UserModel
+			- Agregar clase Models/UserModel (Nota: En V14 2.30 renombramos a User)
 			- Inyectar en AccountController el authentication manager.
 					```cs
 						namespace Addressbook.Web.Controllers
@@ -585,3 +585,8 @@
 					- Código fuente: github.com/odytrice/Operation
 					- Instalar en todos los proyectos
 						- Install-Package Operation -Version 1.1.2
+						
+			- Quitar manejo manual de claims y dejar que UserManager cree automáticamente. V14 2.16
+				- Crear un objeto que representa al usuario. Usaremos UserModel en .Core/Models
+					- Renombrar el AddressBook.Web/Models/UserModel.cs a Users.cs que creamos en Signning V5 - V8 3.40 (Agregar clase Models/UserModel (Nota: En V14 2.30 renombramos a User))
+					- Hacer que herede de IUser<int>
