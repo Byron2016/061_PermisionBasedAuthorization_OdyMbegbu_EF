@@ -194,3 +194,30 @@
 						}
 					}
 				```
+				
+		- LogOut Method V8 4.55
+			- Agregar a AccountController el método LogOut
+				```cs
+					public ActionResult LogOut()
+					{
+						Authentication.SignOut();
+						return Redirect("login");
+					}
+				```
+			- Agregar en el _Layout template accesos a login and logout
+				```cs
+					<body>
+						<div class="navbar navbar-default navbar-fixed-top">
+							<div class="container">
+								<div class="navbar-header">
+									....
+								</div>
+								<div class="navbar-collapse collapse">
+									<ul class="nav navbar-nav">
+										<li>@Html.ActionLink("Login", "Login", "Account")</li>
+										<li>@Html.ActionLink("LogOut", "LogOut", "Account")</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+				```

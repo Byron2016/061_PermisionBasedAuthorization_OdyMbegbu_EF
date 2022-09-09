@@ -61,5 +61,11 @@ namespace Addressbook.Web.Controllers
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie); //v5 3.44 - v8 1.42
             Authentication.SignIn(identity); //v5 3.18 
         }
+
+        public ActionResult LogOut()
+        {
+            Authentication.SignOut();
+            return Redirect("login");
+        }
     }
 }
