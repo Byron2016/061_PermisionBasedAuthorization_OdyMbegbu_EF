@@ -547,3 +547,8 @@
 								}
 							```
 							
+					- Testear
+						- En el .Test añadir referencia a los otros 3 proyectos. 
+						- Instalar paquetes:
+							- Install-Package Moq -Version 4.18.2
+							- Install-Package Ninject -Version 3.3.6
