@@ -470,5 +470,29 @@
 
 					- Instalar en Addressbook.web paquete Ninject
 						- Install-Package Ninject -Version 3.3.6
-					
+						
+				- Configure Ninject V12 8.15
+					- Copiar de: gist.github.com/odytrice/5821087
+						- A small Library to configure Ninject (A Dependency Injection Library) with an ASP.NET Application.
+					- En la carpeta .Web/App_Start crear archivo de tipo clase con nombre: Ninject.Mvc.cs
+						- Quitar del namespace el .App_Start a fin que el quede de la siguiente forma
+							- namespace Ninject.Mvc
+						- Copiar contenido de pag. web ahí.
+						
+					- Registrar Ninject library en Global.asax.cs agregando "NinjectContainer.RegisterAssembly();"
+						```cs
+							namespace Addressbook.Web
+							{
+								public class MvcApplication : System.Web.HttpApplication
+								{
+									protected void Application_Start()
+									{
+										NinjectContainer.RegisterAssembly();
+										AreaRegistration.RegisterAllAreas();
+										RouteConfig.RegisterRoutes(RouteTable.Routes);
+										BundleConfig.RegisterBundles(BundleTable.Bundles);
+									}
+								}
+							}
+						```
 					

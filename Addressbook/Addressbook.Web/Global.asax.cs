@@ -1,4 +1,5 @@
 using Addressbook.Web.App_Start;
+using Ninject.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Addressbook.Web
     {
         protected void Application_Start()
         {
+            NinjectContainer.RegisterAssembly();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
