@@ -590,3 +590,39 @@
 				- Crear un objeto que representa al usuario. Usaremos UserModel en .Core/Models
 					- Renombrar el AddressBook.Web/Models/UserModel.cs a Users.cs que creamos en Signning V5 - V8 3.40 (Agregar clase Models/UserModel (Nota: En V14 2.30 renombramos a User))
 					- Hacer que herede de IUser<int>
+					
+			- Implementar UserStore (Este es el que le dice a EF como CRUD)
+				- Crear en Addressbook.Web.Utils/UserStore : IUserStore<User, int>
+					- Implementa los siguientes métodos
+						- CreateAsync(User user)
+						- DeleteAsync(User user)
+						- Dispose()
+						- FindByIdAsync(int userId)
+						- FindByNameAsync(string userName)
+						- UpdateAsync(User user)
+
+					- Para user usará el "using Addressbook.Web.Models;"
+					- Agregar un constructor inyectar IAccountManager account
+					
+						```cs
+							using Addressbook.Web.Models;
+							using Microsoft.AspNet.Identity;
+							using System;
+							using System.Collections.Generic;
+							using System.Linq;
+							using System.Threading.Tasks;
+							using System.Web;
+							
+							namespace Addressbook.Web.Utils
+							{
+								public class UserStore : IUserStore<User, int>
+								{
+									private IAccountManager _account;
+							
+									public UserStore(IAccountManager account)
+									{
+										_account = account;
+									}
+									....
+						```
+					
