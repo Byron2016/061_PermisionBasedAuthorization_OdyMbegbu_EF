@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Addressbook.Infrastructure.DataAccess.Entities
+namespace Addressbook.Infrastructure.Entities
 {
     public class User
     {

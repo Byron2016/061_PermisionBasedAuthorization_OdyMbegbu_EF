@@ -52,12 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="DataAccess\DataContext.cs" />
-    <Compile Include="DataAccess\Entities\Permission.cs" />
-    <Compile Include="DataAccess\Entities\Role.cs" />
-    <Compile Include="DataAccess\Entities\RolePermission.cs" />
-    <Compile Include="DataAccess\Entities\User.cs" />
-    <Compile Include="DataAccess\Entities\UserRole.cs" />
+    <Compile Include="DataContext.cs" />
+    <Compile Include="Entities\Permission.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\RolePermission.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Addressbook.Infrastructure.DataAccess.Entities
+namespace Addressbook.Infrastructure.Entities
 {
-    public class Role
+    public class Permission
     {
-        public int RoleID { get; set; }
+        public int PermissionID { get; set; }
         public string Name { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
-
         public ICollection<RolePermission> RolePermissions { get; set; } = new HashSet<RolePermission>();
-
     }
 }

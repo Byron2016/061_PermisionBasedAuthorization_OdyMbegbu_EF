@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Addressbook.Infrastructure.DataAccess
+namespace Addressbook.Infrastructure
 {
     internal class DataContext : DbContext
     {
