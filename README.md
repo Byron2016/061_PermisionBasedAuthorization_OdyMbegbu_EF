@@ -228,3 +228,12 @@
 			- Agregar una vista a este método.
 			- Asegurar que el usuario tiene un claim role
 			- Testear cambiando en AccountController método SignIn el rol de "Admin" a "User".
+			
+		- Permission Based Authentication
+			- Code First
+				- Agregar un nuevo proyecto "Class Library (.NET Framework) A project for creating a C# class library (.dll)" 
+					- con nombre Addressbook.Core
+					
+				- Agregar un nuevo proyecto "Class Library (.NET Framework) A project for creating a C# class library (.dll)" 
+					- con nombre Addressbook.Infrastructure
+					
