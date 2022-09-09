@@ -510,4 +510,5 @@
 						- DBContext
 						- Configuration.cs
 
-					
+					- Implementar las queries.
+						- En Addressbook.Infrastructure agregar Queries/AccountQueries : IAccountQueries
