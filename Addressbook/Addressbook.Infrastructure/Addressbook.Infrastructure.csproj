@@ -58,6 +58,7 @@
     <Compile Include="DataAccess\Entities\RolePermission.cs" />
     <Compile Include="DataAccess\Entities\User.cs" />
     <Compile Include="DataAccess\Entities\UserRole.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

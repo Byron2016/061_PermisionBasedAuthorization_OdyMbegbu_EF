@@ -416,3 +416,25 @@
 									....
 								```
 								
+				- Migrar información. V11
+					- Borrado tablas			
+						drop Table dbo.RolePermissionPermissions;
+						drop Table dbo.RoleRolePermissions;
+						drop Table dbo.RolePermissions;
+						drop Table dbo.UserRoles;
+						drop Table dbo.Users;
+						drop Table dbo.Roles;
+						drop Table dbo.Permissions;
+						drop Table dbo.__MigrationHistory;			
+								
+					- En el Package Manager ir al proyecto donde está el DBContext
+						- enable-migrations -verbose
+							- Esto creará dentro de project infraestructure una carpeta Migrations con una clase Configurations.
+					
+					- Habilitar migraciones
+						- En project Addressbook.Infrastructure Migrations/Configurations.cs modificar a true AutomaticMigrationsEnabled
+						
+					- Migrar: 
+						- Ejecutar en Package Manager del proyecto infraestructure 
+							- update-database -verbose
+								
