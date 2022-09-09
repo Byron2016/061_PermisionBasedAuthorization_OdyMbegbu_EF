@@ -20,7 +20,7 @@ namespace Addressbook.Web.Controllers
 
             var user = new User
             {
-                UserID = userID,
+                UserId = userID,
                 Email = email
             }; //v6 1.58
 

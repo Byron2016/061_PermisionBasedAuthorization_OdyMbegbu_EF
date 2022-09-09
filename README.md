@@ -848,3 +848,33 @@
 						}
 					```
 					
+				- Hacer que Adressbook.Web.Utils/UserStore implemente : IUserRoleStore<User, int> V16 9.01
+					- Implementa los siguientes métodos
+						- AddToRoleAsync
+						- GetRolesAsync
+						- IsInRoleAsync
+						- RemoveFromRoleAsync
+						
+				- Colocar código en métodos existentes en UserStore V16 9.42 - V17
+					- DeleteAsync
+					- Dispose
+					- FindByIdAsync
+					- FindByNameAsync
+					- GetPasswordHashAsync
+					- GetRolesAsync
+					- HasPasswordAsync
+					- IsInRoleAsync
+					- RemoveFromRoleAsync
+					- SetPasswordHashAsync
+					- UpdateAsync
+					
+				- Definir métodos en IAccountManager
+					- Operation DeleteUser(UserModel user);
+					- Operation<UserModel> UpdateUser(UserModel user);
+					- Operation<string> SetPasswordHash(UserModel user, string passwordHash);
+					- Operation RemoveFromRole(UserModel user, string roleName);
+					- Operation<bool> IsUserInRole(UserModel user, string roleName);
+					- Operation<IList<string>> GetRoles(UserModel user);
+					- Operation<string> GetPasswordHash(UserModel user);
+					- Operation<UserModel> FindByEmail(string userId);
+					- Operation<UserModel> FindById(int userId);

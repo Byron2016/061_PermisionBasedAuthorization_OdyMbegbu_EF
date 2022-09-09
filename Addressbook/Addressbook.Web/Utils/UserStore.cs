@@ -1,4 +1,6 @@
-﻿using Addressbook.Core.Interface.Managers;
+﻿using Addressbook.Web.Models;
+using Addressbook.Core.Interface.Managers;
+//using Addressbook.Infrastructure.Entities;
 using Addressbook.Web.Models;
 using Microsoft.AspNet.Identity;
 using System;
@@ -9,13 +11,18 @@ using System.Web;
 
 namespace Addressbook.Web.Utils
 {
-    public class UserStore : IUserStore<User, int>, IUserPasswordStore<User, int>
+    public class UserStore : IUserStore<User, int>, IUserPasswordStore<User, int>, IUserRoleStore<User, int>
     {
         private IAccountManager _account;
 
         public UserStore(IAccountManager account)
         {
             _account = account;
+        }
+
+        public Task AddToRoleAsync(User user, string roleName)
+        {
+            throw new NotImplementedException();
         }
 
         public Task CreateAsync(User user)
@@ -25,42 +32,57 @@ namespace Addressbook.Web.Utils
 
         public Task DeleteAsync(User user)
         {
-            throw new NotImplementedException();
+            return _account.DeleteUser(user).AsTask();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
 
         public Task<User> FindByIdAsync(int userId)
         {
-            throw new NotImplementedException();
+            return _account.FindById(userId).Select(u => new User(u)).AsTask();
         }
 
         public Task<User> FindByNameAsync(string userName)
         {
-            throw new NotImplementedException();
+            return _account.FindByEmail(userName).Select(u => new User(u)).AsTask();
         }
 
         public Task<string> GetPasswordHashAsync(User user)
         {
-            throw new NotImplementedException();
+            return _account.GetPasswordHash(user).AsTask();
+        }
+
+        public Task<IList<string>> GetRolesAsync(User user)
+        {
+            return _account.GetRoles(user).AsTask();
         }
 
         public Task<bool> HasPasswordAsync(User user)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> IsInRoleAsync(User user, string roleName)
+        {
+            return _account.IsUserInRole(user, roleName).AsTask();
+        }
+
+        public Task RemoveFromRoleAsync(User user, string roleName)
+        {
+            return _account.RemoveFromRole(user, roleName).AsTask();
         }
 
         public Task SetPasswordHashAsync(User user, string passwordHash)
         {
-            throw new NotImplementedException();
+            return _account.SetPasswordHash(user, passwordHash).AsTask();
         }
 
         public Task UpdateAsync(User user)
         {
-            throw new NotImplementedException();
+            return _account.UpdateUser(user).AsTask();
         }
     }
 }
