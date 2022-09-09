@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Addressbook.Infrastructure
 {
-    internal class DataContext : DbContext
+    public class DataContext : DbContext
     {
         public DataContext() : base("DataContext")
         {

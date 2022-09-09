@@ -463,38 +463,6 @@
 							- update-database -verbose
 								
 			- Adding DI V12
-				- Instalar paquetes
-					- Instalar en Addressbook.web paquete Ninject.Web.Common V12 7.00
-						- Install-Package Ninject.Web.Common -Version 3.3.2
-
-					- Instalar en Addressbook.web paquete Ninject
-						- Install-Package Ninject -Version 3.3.6
-						
-				- Configure Ninject V12 8.15
-					- Copiar de: gist.github.com/odytrice/5821087
-						- A small Library to configure Ninject (A Dependency Injection Library) with an ASP.NET Application.
-					- En la carpeta .Web/App_Start crear archivo de tipo clase con nombre: Ninject.Mvc.cs
-						- Quitar del namespace el .App_Start a fin que el quede de la siguiente forma
-							- namespace Ninject.Mvc
-						- Copiar contenido de pag. web ahí.
-						
-					- Registrar Ninject library en Global.asax.cs agregando "NinjectContainer.RegisterAssembly();"
-						```cs
-							namespace Addressbook.Web
-							{
-								public class MvcApplication : System.Web.HttpApplication
-								{
-									protected void Application_Start()
-									{
-										NinjectContainer.RegisterAssembly();
-										AreaRegistration.RegisterAllAreas();
-										RouteConfig.RegisterRoutes(RouteTable.Routes);
-										BundleConfig.RegisterBundles(BundleTable.Bundles);
-									}
-								}
-							}
-						```
-						
 				- Definir estructura
 					- Agregar en raíz de Addressbook.Core folder Interface
 						- Agregar dentro de este los folders Managers y Queries
@@ -512,3 +480,70 @@
 
 					- Implementar las queries.
 						- En Addressbook.Infrastructure agregar Queries/AccountQueries : IAccountQueries
+						
+				- Ninject
+					- Instalar paquetes
+						- Instalar en Addressbook.web paquete Ninject.Web.Common V12 7.00
+							- Install-Package Ninject.Web.Common -Version 3.3.2
+	
+						- Instalar en Addressbook.web paquete Ninject
+							- Install-Package Ninject -Version 3.3.6
+							
+					- Configure Ninject V12 8.15
+						- Copiar de: gist.github.com/odytrice/5821087
+							- A small Library to configure Ninject (A Dependency Injection Library) with an ASP.NET Application.
+						- En la carpeta .Web/App_Start crear archivo de tipo clase con nombre: Ninject.Mvc.cs
+							- Quitar del namespace el .App_Start a fin que el quede de la siguiente forma
+								- namespace Ninject.Mvc
+							- Copiar contenido de pag. web ahí.
+							
+						- Registrar Ninject library en Global.asax.cs agregando "NinjectContainer.RegisterAssembly();"
+							```cs
+								namespace Addressbook.Web
+								{
+									public class MvcApplication : System.Web.HttpApplication
+									{
+										protected void Application_Start()
+										{
+											NinjectContainer.RegisterAssembly();
+											AreaRegistration.RegisterAllAreas();
+											RouteConfig.RegisterRoutes(RouteTable.Routes);
+											BundleConfig.RegisterBundles(BundleTable.Bundles);
+										}
+									}
+								}
+							```
+							
+							
+					- Definir lo que se inyectará usando Ninject V13 0.40
+						- en Addressbook.Web
+							- Crear en la raíz el folder Modules
+							- Agregar clase MainModule
+							```cs
+								using Addressbook.Core.Interface.Managers;
+								using Addressbook.Core.Interface.Queries;
+								using Addressbook.Core.Managers;
+								using Addressbook.Infrastructure.Queries;
+								using Addressbook.Infrastructure;
+								using Ninject.Modules;
+								using Ninject.Web.Common;
+								using System;
+								using System.Collections.Generic;
+								using System.Data.Entity;
+								using System.Linq;
+								using System.Web;
+								
+								namespace Addressbook.Web.Modules
+								{
+									public class MainModule : NinjectModule
+									{
+										public override void Load()
+										{
+											Bind<DbContext>().To<DataContext>().InRequestScope();
+											Bind<IAccountQueries>().To<AccountQueries>();
+											Bind<IAccountManager>().To<AccountManager>();
+										}
+									}
+								}
+							```
+							
