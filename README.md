@@ -242,8 +242,8 @@
 					- Agregar referencias en Infrastructure a Core
 					
 				- En libraría Addressbook.Core V9 2.34
-					- Crear en la raíz folder Services
-					- Agregar clase AccountService
+					- Crear en la raíz folder Services (Nota en V12 1: Cambiar el nombre de Services a Managers por lo que se debe crear con el nombre definitivo de una vez.)
+					- Agregar clase AccountService (Nota en V12 1: Se lo borra y se crea AccountManager, por lo que no es necesario crearlo.)
 					- Agregar bussiness objets
 						- Crear folder Models
 						- Crear clases: 
@@ -290,88 +290,87 @@
 			
 				- En librería Addressbook.Infrastructure V9 7.15 - V10
 					- Crear en la raíz folder Utilities
-					- Crear en la raíz folder DataAccess
-						- Crear folder Entities
-							- Agregar clase User
-								```cs
-									namespace Addressbook.Infrastructure.Entities
+					- Crear folder Entities
+						- Agregar clase User
+							```cs
+								namespace Addressbook.Infrastructure.Entities
+								{
+									public class User
 									{
-										public class User
-										{
-											public int UserID { get; set; }
-											public string Email { get; set; }
-									
-											public string Password { get; set; }
-									
-											public virtual ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
-										}
+										public int UserID { get; set; }
+										public string Email { get; set; }
+								
+										public string Password { get; set; }
+								
+										public virtual ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
 									}
-								```
-							- Agregar clase UserRole
-								```cs
-									namespace Addressbook.Infrastructure.Entities
+								}
+							```
+						- Agregar clase UserRole
+							```cs
+								namespace Addressbook.Infrastructure.Entities
+								{
+									public class UserRole
 									{
-										public class UserRole
-										{
-											public int UserRoleID { get; set; }
-											public int UserID { get; set; }
-											public int RoleID { get; set; }
-									
-											public virtual Role Role { get; set; }
-											public virtual User User { get; set; }
-										}
+										public int UserRoleID { get; set; }
+										public int UserID { get; set; }
+										public int RoleID { get; set; }
+								
+										public virtual Role Role { get; set; }
+										public virtual User User { get; set; }
 									}
-								```
-							- Agregar clase Role
-								```cs
-									namespace Addressbook.Infrastructure.Entities
+								}
+							```
+						- Agregar clase Role
+							```cs
+								namespace Addressbook.Infrastructure.Entities
+								{
+									public class Role
 									{
-										public class Role
-										{
-											public int RoleID { get; set; }
-											public string Name { get; set; }
-									
-											public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
-									
-											public ICollection<RolePermission> RolePermissions { get; set; } = new HashSet<RolePermission>();
-									
-										}
+										public int RoleID { get; set; }
+										public string Name { get; set; }
+								
+										public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
+								
+										public ICollection<RolePermission> RolePermissions { get; set; } = new HashSet<RolePermission>();
+								
 									}
-								```
-							- Agregar clase RolePermission
-								```cs
-									namespace Addressbook.Infrastructure.Entities
+								}
+							```
+						- Agregar clase RolePermission
+							```cs
+								namespace Addressbook.Infrastructure.Entities
+								{
+									public class RolePermission
 									{
-										public class RolePermission
-										{
-											public int RolePermissionID { get; set; }
-											public int RoleID { get; set; }
-											public int PermissionID { get; set; }
-									
-											public ICollection<Role> Roles { get; set; } 
-									
-											public ICollection<Permission> Permissions { get; set; } 
-										}
+										public int RolePermissionID { get; set; }
+										public int RoleID { get; set; }
+										public int PermissionID { get; set; }
+								
+										public ICollection<Role> Roles { get; set; } 
+								
+										public ICollection<Permission> Permissions { get; set; } 
 									}
-								```
-							- Agregar clase Permission
-								```cs
-									namespace Addressbook.Infrastructure.DataAccess.Entities
+								}
+							```
+						- Agregar clase Permission
+							```cs
+								namespace Addressbook.Infrastructure.Entities
+								{
+									public class RolePermission
 									{
-										public class RolePermission
-										{
-											public int RolePermissionID { get; set; }
-											public int RoleID { get; set; }
-											public int PermissionID { get; set; }
-									
-											public ICollection<Role> Roles { get; set; }
-									
-											public ICollection<Permission> Permissions { get; set; }
-										}
+										public int RolePermissionID { get; set; }
+										public int RoleID { get; set; }
+										public int PermissionID { get; set; }
+								
+										public ICollection<Role> Roles { get; set; }
+								
+										public ICollection<Permission> Permissions { get; set; }
 									}
-								```
-							
-							- Users has UserRoles, UserRoles to Roles, Roles to RolePermissions, RolePremissions to Permissions
+								}
+							```
+						
+						- Users has UserRoles, UserRoles to Roles, Roles to RolePermissions, RolePremissions to Permissions
 							
 					- Crear DBContext V10 5.50
 						- Agregar paquete EntityFramework
@@ -379,11 +378,11 @@
 								- Infrastructure, 
 								- Web (ya q en web tenemos referencia a Infrastructure)
 							- Install-Package EntityFramework -Version 6.4.4
-						- En carpeta DataAccess crear clase DataContext : DBContext
+						- En raíz de la librería crear clase DataContext : DBContext
 							- Crear constructor y enviar información a base
 							- Crear los DbSets
 								```cs
-									namespace Addressbook.Infrastructure.DataAccess
+									namespace Addressbook.Infrastructure
 									{
 										internal class DataContext : DbContext
 										{
@@ -495,4 +494,20 @@
 								}
 							}
 						```
+						
+				- Definir estructura
+					- Agregar en raíz de Addressbook.Core folder Interface
+						- Agregar dentro de este los folders Managers y Queries
+					- Crear interfases
+						- Interface/Manager/IAccountManager
+						- Interface/Manager/IAccountQueries
+					- Crear folder Managers (Si existe el folder Services cambiar el nombre del folder Services a Managers)
+						- Crear clase AccountManager.cs que implementa IAccountManager (Nota aún no creado)
+							- En caso de existir eliminar la clase si existe AccountServices.cs (Nota: Debe estar vacía)
+
+					- Ya no se requiere, ya se modifico el readme. Mover contenido de carpeta Addressbook.Infrastructure.DataAccess a raíz del proyecto y cambiar namespaces en
+						- Archivos dentro de entidades
+						- DBContext
+						- Configuration.cs
+
 					

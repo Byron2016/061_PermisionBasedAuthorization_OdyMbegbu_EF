@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Addressbook.Infrastructure
+namespace Addressbook.Core.Interface.Managers
 {
-    public class Class1
+    public interface IAccountManager
     {
     }
 }
