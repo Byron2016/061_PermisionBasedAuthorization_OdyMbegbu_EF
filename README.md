@@ -402,3 +402,17 @@
 									}
 								```
 								
+				- En librería Addressbook.Web V11
+					- Agregar el connetionString al Web.config
+								```cs
+									....
+									</appSettings>
+									
+									<connectionStrings>
+										<add name="DataContext" connectionString="Data Source=localhost;Initial Catalog=db_AddressBook;persist security info=True;User ID=sa;Password=123456;MultipleActiveResultSets=True;App=EntityFramework" providerName="System.Data.SqlClient" />
+									</connectionStrings>
+									
+									<system.web>
+									....
+								```
+								
