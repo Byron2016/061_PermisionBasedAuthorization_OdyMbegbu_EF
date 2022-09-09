@@ -221,3 +221,10 @@
 							</div>
 						</div>
 				```
+				
+		- Implement Role Base Segurity (V.8 7.32)
+			- Crear en HomeController un método Admin
+			- Decorarlo con Authorize(Roles ="Admin")]
+			- Agregar una vista a este método.
+			- Asegurar que el usuario tiene un claim role
+			- Testear cambiando en AccountController método SignIn el rol de "Admin" a "User".

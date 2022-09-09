@@ -55,7 +55,7 @@ namespace Addressbook.Web.Controllers
                 new Claim(ClaimTypes.NameIdentifier, "1"),
                 new Claim(ClaimTypes.Email, model.Email),
                 new Claim(ClaimTypes.Name, model.Email),
-                new Claim(ClaimTypes.Role, "admin")
+                new Claim(ClaimTypes.Role, "Admin")
             }; //v5 6.35
 
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie); //v5 3.44 - v8 1.42

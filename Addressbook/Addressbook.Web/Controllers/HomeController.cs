@@ -26,5 +26,11 @@ namespace Addressbook.Web.Controllers
 
             return View(user);
         }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Admin()
+        {
+            return View();
+        }
     }
 }
