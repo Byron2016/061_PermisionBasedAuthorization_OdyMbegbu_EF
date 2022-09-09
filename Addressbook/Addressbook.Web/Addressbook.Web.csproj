@@ -183,6 +183,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Addressbook.Core\Addressbook.Core.csproj">
+      <Project>{1d46c2ec-2558-4367-aeae-06612e137e9f}</Project>
+      <Name>Addressbook.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Addressbook.Infrastructure\Addressbook.Infrastructure.csproj">
+      <Project>{985bb5a5-d7e7-483d-b59e-8fd208da771b}</Project>
+      <Name>Addressbook.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

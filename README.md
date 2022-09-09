@@ -287,3 +287,88 @@
 										}
 									}
 								```
+			
+				- En librería Addressbook.Infrastructure V9 7.15 - V10
+					- Crear en la raíz folder Utilities
+					- Crear en la raíz folder DataAccess
+						- Crear folder Entities
+							- Agregar clase User
+								```cs
+									namespace Addressbook.Infrastructure.Entities
+									{
+										public class User
+										{
+											public int UserID { get; set; }
+											public string Email { get; set; }
+									
+											public string Password { get; set; }
+									
+											public virtual ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
+										}
+									}
+								```
+							- Agregar clase UserRole
+								```cs
+									namespace Addressbook.Infrastructure.Entities
+									{
+										public class UserRole
+										{
+											public int UserRoleID { get; set; }
+											public int UserID { get; set; }
+											public int RoleID { get; set; }
+									
+											public virtual Role Role { get; set; }
+											public virtual User User { get; set; }
+										}
+									}
+								```
+							- Agregar clase Role
+								```cs
+									namespace Addressbook.Infrastructure.Entities
+									{
+										public class Role
+										{
+											public int RoleID { get; set; }
+											public string Name { get; set; }
+									
+											public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
+									
+											public ICollection<RolePermission> RolePermissions { get; set; } = new HashSet<RolePermission>();
+									
+										}
+									}
+								```
+							- Agregar clase RolePermission
+								```cs
+									namespace Addressbook.Infrastructure.Entities
+									{
+										public class RolePermission
+										{
+											public int RolePermissionID { get; set; }
+											public int RoleID { get; set; }
+											public int PermissionID { get; set; }
+									
+											public ICollection<Role> Roles { get; set; } 
+									
+											public ICollection<Permission> Permissions { get; set; } 
+										}
+									}
+								```
+							- Agregar clase Permission
+								```cs
+									namespace Addressbook.Infrastructure.DataAccess.Entities
+									{
+										public class RolePermission
+										{
+											public int RolePermissionID { get; set; }
+											public int RoleID { get; set; }
+											public int PermissionID { get; set; }
+									
+											public ICollection<Role> Roles { get; set; }
+									
+											public ICollection<Permission> Permissions { get; set; }
+										}
+									}
+								```
+							
+							- Users has UserRoles, UserRoles to Roles, Roles to RolePermissions, RolePremissions to Permissions
