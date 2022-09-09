@@ -372,3 +372,33 @@
 								```
 							
 							- Users has UserRoles, UserRoles to Roles, Roles to RolePermissions, RolePremissions to Permissions
+							
+					- Crear DBContext V10 5.50
+						- Agregar paquete EntityFramework
+							- Debe ser agregado en 
+								- Infrastructure, 
+								- Web (ya q en web tenemos referencia a Infrastructure)
+							- Install-Package EntityFramework -Version 6.4.4
+						- En carpeta DataAccess crear clase DataContext : DBContext
+							- Crear constructor y enviar información a base
+							- Crear los DbSets
+								```cs
+									namespace Addressbook.Infrastructure.DataAccess
+									{
+										internal class DataContext : DbContext
+										{
+											public DataContext() : base("DataContext")
+											{
+									
+											}
+									
+											public DbSet<User> Users { get; set; }
+											public DbSet<UserRole> UserRoles { get; set; }
+											public DbSet<Role> Roles { get; set; }
+											public DbSet<RolePermission> RolePermissions { get; set; }
+											public DbSet<Permission> Permissions { get; set; }
+									
+										}
+									}
+								```
+								
