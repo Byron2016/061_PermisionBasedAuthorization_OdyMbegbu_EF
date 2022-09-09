@@ -774,7 +774,9 @@
 						
 				- Agregar extension Method. V18 1.15
 					- Agregar a raíz del proyecto Addressbook.Core la clase  Extensions
-						- Colocar el namespace a namespace Addressbook
+						- Esta tendrá el namespace Addressbook a fin que se pueda usar en todos los sitios.
+						- Agregamos el tag [DebuggerStepThrough] al método Assign para que no haga Debug.
+						
 							```cs
 								using System;
 								using System.Collections.Generic;
@@ -826,6 +828,14 @@
 								}
 							```
 				- Agregar constructores para Addressbook.Web.Models/Users V17 8.40
+					- Para no tener que hacer
+						this.Email = model.Email;
+						this.Password = model.Password;
+						
+					Usamos
+						this.Assign(model);
+				
+				
 					```cs
 						namespace Addressbook.Web.Models
 						{
@@ -855,7 +865,7 @@
 						- IsInRoleAsync
 						- RemoveFromRoleAsync
 						
-				- Colocar código en métodos existentes en UserStore V16 9.42 - V17
+				- Colocar código en métodos existentes en UserStore V16 9.42 - V17 V18 4.23 - 8.29
 					- DeleteAsync
 					- Dispose
 					- FindByIdAsync
@@ -878,3 +888,64 @@
 					- Operation<string> GetPasswordHash(UserModel user);
 					- Operation<UserModel> FindByEmail(string userId);
 					- Operation<UserModel> FindById(int userId);
+					
+					
+			- Implement Authorization V19 0.38 
+				- Crear Atributos en AddressBook.web.Utils
+					- Crear clase AuthorizeUserAttribute : AuthorizeAttribute
+					- Esta clase utilizará permisions no roles BA
+					```cs
+						namespace Addressbook.Web.Utils
+						{
+							public class AuthorizeUserAttribute : AuthorizeAttribute
+							{
+								private string[] _permissions;
+								private IAccountManager _account;
+								public AuthorizeUserAttribute(params string[] permissions)
+								{
+									_permissions = permissions;
+									_account = NinjectContainer.Resolve<IAccountManager>();
+								}
+								protected override bool AuthorizeCore(HttpContextBase httpContext)
+								{
+									//First Make Sure that the User is Authenticated
+									if (httpContext.User.Identity.IsAuthenticated)
+									{
+										//Get Permissions List in Session
+										var permissions = httpContext.Session["Permissions"] as string[];
+										if (permissions == null)
+										{
+											//Fetch Permissions
+											var getPermissions = _account.GetPermissions(httpContext.User.Identity.GetUserId<int>());
+											if (getPermissions.Any())
+											{
+												//Cache Permissions
+												httpContext.Session["Permissions"] = getPermissions.Select(p => p.Name).ToArray();
+						
+												//Check to See if User Has all the Required Permissions
+												var query = from permission in _permissions
+															join userpermission in getPermissions
+															on permission.ToLower() equals userpermission.Name.ToLower()
+															select permission;
+												return query.Any();
+											}
+										}
+										else
+										{
+											var query = from permission in _permissions
+														join userpermission in permissions
+														on permission.ToLower() equals userpermission.ToLower()
+														select permission;
+											return query.Any();
+										}
+									}
+									return false;
+								}
+						
+								protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+								{
+									filterContext.Result = new RedirectResult("/account/notauthorized");
+								}
+							}
+						}
+					```
