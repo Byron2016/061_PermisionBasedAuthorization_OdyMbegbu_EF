@@ -552,3 +552,30 @@
 						- Instalar paquetes:
 							- Install-Package Moq -Version 4.18.2
 							- Install-Package Ninject -Version 3.3.6
+						- Agregar al proyecto Addressbook.Test la class NinjectTests
+							```cs
+								namespace Addressbook.Tests
+								{
+									[TestClass]
+									public class NinjectTests
+									{
+										[TestMethod]
+										public void TestBindings()
+										{
+											//Create Kernel and Load Assembly Application.Web
+											var kernel = new StandardKernel();
+											kernel.Load(new Assembly[] { Assembly.Load("Addressbook.Web") });
+								
+											var query = from types in Assembly.Load("AddressBook.Core").GetExportedTypes()
+														where types.IsInterface
+														where types.Namespace.StartsWith("AddressBook.Core.Interface")
+														select types;
+											foreach (var i in query.ToList())
+											{
+												kernel.Get(i);
+											}
+										}
+									}
+								}
+							```
+						- Ir a Test/Test Explorer/ y ejecutar
