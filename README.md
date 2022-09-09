@@ -171,3 +171,26 @@
 						</system.web>
 						<runtime>
 					```
+
+			- En HomeController enviar en la vista Index el UserModel con obteniendo los datos del User.Identity
+				```cs
+					namespace Addressbook.Web.Controllers
+					{
+						[Authorize]
+						public class HomeController : Controller
+						{
+							// GET: Home
+							public ActionResult Index()
+							{
+								int userID = User.Identity.GetUserId<int>();
+								string email = User.Identity.GetUserName();
+								var user = new UserModel
+								{
+									UserID = userID,
+									Email = email
+								};
+								return View(user);
+							}
+						}
+					}
+				```
