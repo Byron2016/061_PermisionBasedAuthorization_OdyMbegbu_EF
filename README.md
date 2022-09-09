@@ -237,3 +237,53 @@
 				- Agregar un nuevo proyecto "Class Library (.NET Framework) A project for creating a C# class library (.dll)" 
 					- con nombre Addressbook.Infrastructure
 					
+				- Referencias
+					- Agregar referencias en web a Core e Infrastructure
+					- Agregar referencias en Infrastructure a Core
+					
+				- En libraría Addressbook.Core V9 2.34
+					- Crear en la raíz folder Services
+					- Agregar clase AccountService
+					- Agregar bussiness objets
+						- Crear folder Models
+						- Crear clases: 
+							- UserModel
+								```cs
+									namespace Addressbook.Core.Models
+									{
+										public class UserModel
+										{
+											public int UserId { get; set; }
+											public string Email { get; set; }
+											public string Password { get; set; }
+									
+											//tiene multiples roles.
+											public ICollection<RoleModel> Roles { get; set; } = new List<RoleModel>();
+										}
+									}
+								```
+							- RoleModel
+								```cs
+									namespace Addressbook.Core.Models
+									{
+										public class RoleModel
+										{
+											public int RoleId { get; set; }
+											public string Name { get; set; }
+									
+											//roll tiene múltiples permisos.
+											public ICollection<PermissionModel> Permissions { get; set; } = new List<PermissionModel>();
+										}
+									}
+								```
+							- PermissionModel
+								```cs
+									namespace Addressbook.Core.Models
+									{
+										public class PermissionModel
+										{
+											public int PermissionID { get; set; }
+											public string Name { get; set; }
+										}
+									}
+								```
