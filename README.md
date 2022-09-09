@@ -553,6 +553,7 @@
 							- Install-Package Moq -Version 4.18.2
 							- Install-Package Ninject -Version 3.3.6
 						- Agregar al proyecto Addressbook.Test la class NinjectTests
+							- https://gist.github.com/odytrice/243fe6c4bf14aedb584c3fc876b9fe42
 							```cs
 								namespace Addressbook.Tests
 								{
@@ -579,3 +580,8 @@
 								}
 							```
 						- Ir a Test/Test Explorer/ y ejecutar
+						
+				- Use Operational class V14
+					- Código fuente: github.com/odytrice/Operation
+					- Instalar en todos los proyectos
+						- Install-Package Operation -Version 1.1.2
