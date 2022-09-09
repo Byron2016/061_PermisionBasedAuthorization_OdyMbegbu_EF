@@ -644,5 +644,17 @@
 								}
 							}
 						```
+				- Hacer que Adressbook.Web.Utils/UserStore implemente : IUserPasswordStore<User, int> V15 3.35
+					- Implementa los siguientes métodos
+						- GetPasswordHashAsync
+						- HasPasswordAsync
+						- SetPasswordHashAsync
 						
-					
+				- Deploy some methos from Addressbook.Web.Utils/UserStore 
+					- CreateAsync(User user)
+						```cs
+							public Task CreateAsync(User user)
+							{
+								return _account.CreateUser(user).AsTask();
+							}
+						```

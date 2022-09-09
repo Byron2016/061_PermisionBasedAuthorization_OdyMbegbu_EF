@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Addressbook.Web.Utils
 {
-    public class UserStore : IUserStore<User, int>
+    public class UserStore : IUserStore<User, int>, IUserPasswordStore<User, int>
     {
         private IAccountManager _account;
 
@@ -20,7 +20,7 @@ namespace Addressbook.Web.Utils
 
         public Task CreateAsync(User user)
         {
-            throw new NotImplementedException();
+            return _account.CreateUser(user).AsTask();
         }
 
         public Task DeleteAsync(User user)
@@ -39,6 +39,21 @@ namespace Addressbook.Web.Utils
         }
 
         public Task<User> FindByNameAsync(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetPasswordHashAsync(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> HasPasswordAsync(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetPasswordHashAsync(User user, string passwordHash)
         {
             throw new NotImplementedException();
         }
