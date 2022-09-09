@@ -18,6 +18,12 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+
+            context.Users.AddOrUpdate(u => u.Email, new DataAccess.Entities.User
+            {
+                Email = "admin@gmail.com",
+                Password = "5f4dcc3b5aa765d61d8327deb882cf99".ToUpper()
+            });
         }
     }
 }

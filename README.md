@@ -437,4 +437,29 @@
 					- Migrar: 
 						- Ejecutar en Package Manager del proyecto infraestructure 
 							- update-database -verbose
+							
+					- Seed Users 
+						- En project .Infrastructure Migrations/Configurations.cs/Seed agregar
+							```cs
+								namespace Addressbook.Infrastructure.Migrations
+								{
+									....
+								
+									internal sealed class Configuration : DbMigrationsConfiguration<Addressbook.Infrastructure.DataAccess.DataContext>
+									{
+										....
+								
+										protected override void Seed(Addressbook.Infrastructure.DataAccess.DataContext context)
+										{							
+											context.Users.AddOrUpdate(u => u.Email, new DataAccess.Entities.User
+											{
+												Email = "admin@gmail.com",
+												Password = "5f4dcc3b5aa765d61d8327deb882cf99".ToUpper()
+											});
+										}
+									}
+								}
+							```
+						- Para enviar migración ejecutar
+							- update-database -verbose
 								
