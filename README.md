@@ -626,3 +626,23 @@
 									....
 						```
 					
+					- Hacer que AddressBook.Web/Models/User herede de UserModel (De using Addressbook.Core.Models;) V14 - V|5 1.21
+						```cs
+							namespace Addressbook.Web.Models
+							{
+								public class User : UserModel, IUser<int>
+								{
+									public int Id { 
+										get { return UserId; } 
+										set { UserId = value; } 
+									}
+							
+									public string UserName { 
+										get { return Email; } 
+										set { Email = value; }
+									}
+								}
+							}
+						```
+						
+					
