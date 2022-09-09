@@ -825,3 +825,26 @@
 									}
 								}
 							```
+				- Agregar constructores para Addressbook.Web.Models/Users V17 8.40
+					```cs
+						namespace Addressbook.Web.Models
+						{
+							public class User : UserModel, IUser<int>
+							{
+								....
+								
+								public User()
+								{
+						
+								}
+						
+								public User(UserModel model)
+								{
+									//v17 9.18
+									this.Assign(model);
+						
+								}
+							}
+						}
+					```
+					

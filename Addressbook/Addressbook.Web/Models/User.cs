@@ -18,5 +18,17 @@ namespace Addressbook.Web.Models
             get { return Email; } 
             set { Email = value; }
         }
+
+        public User()
+        {
+
+        }
+
+        public User(UserModel model)
+        {
+            //v17 9.18
+            this.Assign(model);
+
+        }
     }
 }
