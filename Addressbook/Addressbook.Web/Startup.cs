@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
@@ -21,6 +22,7 @@ namespace Addressbook.Web
         {
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie, //v7 5.44
                 LoginPath = new PathString("/account/login"),
             });
         }

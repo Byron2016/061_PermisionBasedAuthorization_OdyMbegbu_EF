@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Addressbook.Web.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +14,17 @@ namespace Addressbook.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            int userID = User.Identity.GetUserId<int>(); //v5 8.47
+            string email = User.Identity.GetUserName();
+
+
+            var user = new UserModel
+            {
+                UserID = userID,
+                Email = email
+            }; //v6 1.58
+
+            return View(user);
         }
     }
 }

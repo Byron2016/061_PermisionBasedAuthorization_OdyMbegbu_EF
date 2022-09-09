@@ -114,7 +114,60 @@
 				- Recibe de parámetro un LoginModel
 			- Redireccionar en la vista login para llamar a método Login post y utilizar htlm helpers para definir los inputs
 			
-		- Signning V5
+		- Signning V5 - V8 3.40
 			- Agregar clase Models/UserModel
+			- Inyectar en AccountController el authentication manager.
+					```cs
+						namespace Addressbook.Web.Controllers
+						{
+							public class AccountController : Controller
+							{
+								//Give me the owin authentication context
+								public IAuthenticationManager Authentication => HttpContext.GetOwinContext().Authentication;
+					```
 			- Agregar paquete Microsoft.AspNet.Identity.Core V5 9.58
 				- Install-Package Microsoft.AspNet.Identity.Core -Version 2.2.3
+				
+			- Obtener el authentication manager.
+
+
+			- Definir en el owin startup el tipo de autenticación V7 6.11
+				```cs
+					private static void ConfigureAuth(IAppBuilder app)
+					{
+						app.UseCookieAuthentication(new CookieAuthenticationOptions
+						{
+							AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+							LoginPath = new PathString("/account/login"),
+						});
+					}
+				```
+				
+			- Definir en AccountController al crear el claim que se trata de cookie V8 1.41
+				```cs
+					private void SignIn(LoginModel model) 
+					{
+						....
+			
+						var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie); 
+						Authentication.SignIn(identity);  
+					}
+				```
+				
+			- Definir en web.config el modo de authentication dentro de tags system.web V7 8.38
+				- <authentication mode="None" />
+					```cs
+						<configuration>
+						<appSettings>
+							<add key="webpages:Version" value="3.0.0.0" />
+							<add key="webpages:Enabled" value="false" />
+							<add key="ClientValidationEnabled" value="true" />
+							<add key="UnobtrusiveJavaScriptEnabled" value="true" />
+						</appSettings>
+						<system.web>
+							<compilation debug="true" targetFramework="4.8" />
+							<httpRuntime targetFramework="4.8" />
+							<authentication mode="None" />
+						</system.web>
+						<runtime>
+					```
