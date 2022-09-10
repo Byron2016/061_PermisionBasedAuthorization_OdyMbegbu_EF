@@ -1,4 +1,5 @@
 ﻿using Addressbook.Web.Models;
+using Addressbook.Web.Utils;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Web.Mvc;
 
 namespace Addressbook.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [AuthorizeUser("Home-Page")]
     public class HomeController : Controller
     {
         // GET: Home
@@ -27,7 +29,7 @@ namespace Addressbook.Web.Controllers
             return View(user);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Admin()
         {
             return View();

@@ -988,3 +988,5 @@
 					}
 					
 				```
+				
+			- Colocar el atributo [AuthorizeUser("Home-Page")] en la clase que queremos autorizar. V20 0.58
