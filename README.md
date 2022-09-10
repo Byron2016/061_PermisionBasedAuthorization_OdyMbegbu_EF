@@ -1029,3 +1029,40 @@
 					
 					insert into dbo.UserRoles values (1,1);
 					insert into dbo.RolePermissions values (1,1);
+					
+			- Agregar en Addressbook.Core.Models V21 6.06
+				- clase abstractra Model : : IValidatableObject	
+				- using System.ComponentModel.DataAnnotations; 
+				```cs
+					using System;
+					using System.Collections.Generic;
+					using System.ComponentModel.DataAnnotations;
+					using System.Linq;
+					using System.Text;
+					using System.Threading.Tasks;
+					
+					namespace Addressbook.Core.Models
+					{
+						public abstract class Model : IValidatableObject
+						{
+							public Operation<ValidationResult[]> Validate()
+							{
+								var errors = new List<ValidationResult>();
+								Validator.TryValidateObject(this, new ValidationContext(this, serviceProvider: null, items: null), errors, true);
+								return new Operation<ValidationResult[]>
+								{
+									Result = errors.ToArray(),
+									Succeeded = errors.Any() == false,
+									Message = errors.Any() ? errors.Select(e => e.ErrorMessage).Aggregate((ag, e) => ag + ", " + e) : ""
+								};
+					
+							}
+							public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+							{
+								var errors = new List<ValidationResult>();
+								return errors;
+							}
+						}
+					}
+				```
+				- Hacer que los modelos que están dentro de Addressbook.Core.Models hereden de Model. V21 9.41

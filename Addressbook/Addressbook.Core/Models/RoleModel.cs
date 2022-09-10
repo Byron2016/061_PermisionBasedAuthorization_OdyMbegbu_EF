@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Addressbook.Core.Models
 {
-    public class RoleModel
+    public class RoleModel : Model
     {
         public int RoleId { get; set; }
         public string Name { get; set; }
