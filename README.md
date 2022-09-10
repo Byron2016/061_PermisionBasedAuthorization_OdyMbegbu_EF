@@ -949,3 +949,30 @@
 							}
 						}
 					```
+
+			- Se modifica momentaneamente el método AddressBook.web.Utils/AuthorizeUserAttribute/AuthorizeCore ya que está presentando un error, para hacer pruebas y luego corregir.
+				```cs
+					....
+					if (permissions == null)
+					{
+						//Fetch Permissions
+						//var getPermissions = _account.GetPermissions(httpContext.User.Identity.GetUserId<int>());
+						IList<PermissionModel> getPermissions = new List<PermissionModel> //Hago esto x q la expresión anterior en este momento me está dando errores en el Any.
+						{
+							new PermissionModel
+							{
+								PermissionID = 1,
+								Name = "Home-Page"
+							},
+							new PermissionModel
+							{
+								PermissionID = 1,
+								Name = "Account-Page"
+							}
+						};
+						
+						....
+					
+				```
+				
+				
