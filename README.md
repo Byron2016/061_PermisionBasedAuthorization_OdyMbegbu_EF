@@ -990,3 +990,42 @@
 				```
 				
 			- Colocar el atributo [AuthorizeUser("Home-Page")] en la clase que queremos autorizar. V20 0.58
+			
+			- Seed database V20 4.29
+				```cs
+					namespace Addressbook.Infrastructure.Migrations
+					{
+						....
+					
+						internal sealed class Configuration : DbMigrationsConfiguration<Addressbook.Infrastructure.DataContext>
+						{
+							....
+					
+							protected override void Seed(Addressbook.Infrastructure.DataContext context)
+							{
+								....
+					
+								context.Roles.AddOrUpdate(r => r.Name, new Entities.Role
+								{
+									Name = "Admin"
+								});
+					
+								context.Permissions.AddOrUpdate(p => p.Name, new Entities.Permission
+								{
+									Name = "Home-Page"
+								});
+							}
+						}
+					}
+				```
+				
+				- Ejecudar update-database -verbose V20 6.26
+				- Llenar tablas intermedias
+					select * from dbo.Users; 
+					select * from dbo.Roles;
+					select * from dbo.Permissions;
+					select * from dbo.UserRoles;
+					select * from dbo.RolePermissions;
+					
+					insert into dbo.UserRoles values (1,1);
+					insert into dbo.RolePermissions values (1,1);

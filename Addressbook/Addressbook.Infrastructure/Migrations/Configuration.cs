@@ -24,6 +24,23 @@
                 Email = "admin@gmail.com",
                 Password = "5f4dcc3b5aa765d61d8327deb882cf99".ToUpper()
             });
+
+            //context.UserRoles.AddOrUpdate(ur => new int { ur.RoleID, ur.UserID }, new Entities.UserRole
+            //{
+            //    f
+            //});
+
+            context.Roles.AddOrUpdate(r => r.Name, new Entities.Role
+            {
+                Name = "Admin"
+            });
+
+            context.Permissions.AddOrUpdate(p => p.Name, new Entities.Permission
+            {
+                Name = "Home-Page"
+            });
+
+
         }
     }
 }
