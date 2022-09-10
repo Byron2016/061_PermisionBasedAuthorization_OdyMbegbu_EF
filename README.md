@@ -975,4 +975,16 @@
 					
 				```
 				
-				
+			- Implementar GetPermissions methods from AccountManager V19 0.38 - V20 
+				- Definir el método en IAccountManager
+				- Implementarlo en AccountManager
+				```cs
+					public Operation<PermissionModel[]> GetPermissions(int userId) //V19 
+					{
+						return Operation.Create(() =>
+						{
+							return new PermissionModel[] { }; //V20 10.00
+						});
+					}
+					
+				```

@@ -19,6 +19,6 @@ namespace Addressbook.Core.Interface.Managers
         Operation<string> GetPasswordHash(UserModel user);
         Operation<UserModel> FindByEmail(string userId);
         Operation<UserModel> FindById(int userId);
-        //Operation<PermissionModel[]> GetPermissions(int userID); //
+        Operation<PermissionModel[]> GetPermissions(int userId); //V19 6.06
     }
 }

@@ -96,10 +96,12 @@ namespace Addressbook.Core.Managers
             return Operation.Create(() => user);
         }
 
-        //public Operation<PermissionModel[]> GetPermissions(int userID)
-        //{
-        //    //TODO: Debe ir??
-        //    throw new NotImplementedException();
-        //}
+        public Operation<PermissionModel[]> GetPermissions(int userId) //V19 
+        {
+            return Operation.Create(() =>
+            {
+                return new PermissionModel[] { }; //V20 10.00
+            });
+        }
     }
 }
